@@ -63,13 +63,16 @@ To destroy all resources:
 terraform destroy -auto-approve
 ```
 
-# Important: Verify Internet Gateway deletion in AWS Console after destruction
-
 ## 🐛 Troubleshooting
 
 ### SSH Connection Issues
 
 - Verify security group allows inbound TCP/22
+
+
+# Important: Verify Internet Gateway deletion in AWS Console after destruction
+
+
 
 
 Thanks for your visit
