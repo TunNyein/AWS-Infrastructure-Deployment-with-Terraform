@@ -1,121 +1,65 @@
-AWS Infrastructure Deployment with Terraform
+# AWS Infrastructure Deployment with Terraform
 
-Overview
+## 📜 Overview
+This Terraform project automates the following resources
 
-This Terraform project automates the deployment of AWS infrastructure, including VPCs, subnets, route tables, internet gateways, SSH key pairs, and EC2 instances.
 
-Features
+- VPCs (the two vpc )
+- Public & Private Subnets 
+- Route Tables & Associations
+- Internet Gateways
+- EC2 Instances
+- SSH Key Pairs
 
-VPCs: Creates two VPCs (sg_vpc1 for Production and tk_vpc1 for Development).
 
-Subnets: Defines public and private subnets for each VPC.
 
-Route Tables: Manages routing for public and private networks.
+## ⚙️ Prerequisites
+- [Terraform](https://developer.hashicorp.com/terraform/downloads) ≥ v1.0
+- [AWS CLI](https://aws.amazon.com/cli/) configured with IAM credentials including permissions
 
-Internet Gateway: Provides internet access to public subnets.
 
-SSH Key Pairs: Generates SSH keys for secure EC2 instance access.
+## 🛠️ Deployment
+```bash
+# Clone repository
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
 
-EC2 Instances: Launches instances in the public subnets with assigned key pairs.
-
-Prerequisites
-
-Ensure you have the following installed:
-
-Terraform
-
-AWS CLI configured with appropriate credentials
-
-Deployment Instructions
-
-Clone the repository:
-
-git clone <your-repository-url>
-cd <repository-folder>
-
-Initialize Terraform:
-
+# Initialize Terraform
 terraform init
 
-Review the execution plan:
-
+# Preview infrastructure changes
 terraform plan
 
-Apply the configuration:
-
+# Apply configuration
 terraform apply -auto-approve
 
-Retrieve the generated SSH private keys:
 
+# After deployment:
+
+Retrieve SSH keys:
+
+```bash
 ls ssh-private-keys/
+Connect to EC2 instance:
 
-Use the appropriate .pem file to access your EC2 instance.
+```bash
+ssh -i ssh-private-keys/sg_private_key.pem ec2-user@<public-ip>
 
-Connect to an EC2 instance:
-
-ssh -i ssh-private-keys/sg_private_key.pem ec2-user@<instance-public-ip>
-
-Resources Created
-
-VPCs and Subnets
-
-sg_vpc1 - Production VPC (10.10.0.0/16)
-
-tk_vpc1 - Development VPC (10.20.0.0/16)
-
-Public and private subnets in ap-southeast-1a and ap-southeast-1b
-
-Networking
-
-Internet gateways for public network access
-
-Route tables and associations for public and private subnets
-
-Routing to internet gateways for external connectivity
-
-Compute
-
-EC2 instances in public subnets
-
-SSH key pairs for secure login
-
-Troubleshooting
-
-Public IP not assigned to EC2 instances:
-
-Ensure associate_public_ip_address = true in aws_instance.
-
-Check if an internet gateway is attached and a route exists.
-
-Permission denied (publickey) when SSHing into EC2:
-
-Ensure the private key has correct permissions:
-
-chmod 400 ssh-private-keys/sg_private_key.pem
-
-Ensure you are using the correct user (ec2-user for Amazon Linux, ubuntu for Ubuntu, etc.).
-
-Terraform errors related to resource dependencies:
-
-Run terraform destroy and then terraform apply to reapply resources cleanly.
-
-Cleanup
-
+🧹 Cleanup
 To destroy all resources:
 
+
 terraform destroy -auto-approve
+Important: Verify Internet Gateway deletion in AWS Console after destruction
 
-Future Enhancements
+🐛 Troubleshooting
+SSH Connection Issues
+Verify security group allows inbound TCP/22
 
-Implement an Elastic Load Balancer (ELB) for high availability.
+Check instance public IP address
 
-Add IAM roles and security groups for better access control.
+Ensure using correct PEM key:
 
-Enable logging and monitoring using AWS CloudWatch.
-
-Author
-
-Aung Paing
-
-License
-
+``` bash
+chmod 400 ssh-private-keys/sg_private_key.pem
+General Tips
