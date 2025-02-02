@@ -20,31 +20,31 @@ This Terraform project automates the following resources
 
 ## 🛠️ Deployment
 
-# Clone repository
+### Clone repository
 ```bash
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
 ```
 
-# Initialize Terraform
+### Initialize Terraform
 ```bash
 terraform init
 ```
 
-# Preview infrastructure changes
+### Preview infrastructure changes
 ```bash
 terraform plan
 ```
 
-# Apply configuration
+### Apply configuration
 ```bash
 terraform apply -auto-approve
 ```
 
 
-## After deployment:
+### After deployment:
 
-# Retrieve SSH keys:
+### Retrieve SSH keys:
 
 ```bash
 ls ssh-private-keys/
