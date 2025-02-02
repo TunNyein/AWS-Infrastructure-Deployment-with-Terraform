@@ -19,30 +19,36 @@ This Terraform project automates the following resources
 
 
 ## 🛠️ Deployment
-```bash
+
 # Clone repository
+```bash
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
+```
 
 # Initialize Terraform
+```bash
 terraform init
+```
 
 # Preview infrastructure changes
+```bash
 terraform plan
+```
 
 # Apply configuration
+```bash
 terraform apply -auto-approve
+```
 
 
 ## After deployment:
 
-Retrieve SSH keys:
+# Retrieve SSH keys:
 
 ```bash
 ls ssh-private-keys/
 ```
-
-
 
 Connect to EC2 instance:
 
@@ -50,18 +56,18 @@ Connect to EC2 instance:
 ssh -i ssh-private-keys/sg_private_key.pem ec2-user@<public-ip>
 ```
 
-🧹 Cleanup
+## 🧹 Cleanup
 To destroy all resources:
 
 ```bash
 terraform destroy -auto-approve
 ```
 
-#### Important: Verify Internet Gateway deletion in AWS Console after destruction
+# Important: Verify Internet Gateway deletion in AWS Console after destruction
 
 ## 🐛 Troubleshooting
 
-# SSH Connection Issues
+### SSH Connection Issues
 
 - Verify security group allows inbound TCP/22
 
