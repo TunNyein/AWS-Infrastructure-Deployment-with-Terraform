@@ -4,7 +4,7 @@
 This Terraform project automates the following resources
 
 
-- VPCs (the two vpc )
+- VPCs 
 - Public & Private Subnets 
 - Route Tables & Associations
 - Internet Gateways
@@ -34,32 +34,36 @@ terraform plan
 terraform apply -auto-approve
 
 
-# After deployment:
+## After deployment:
 
 Retrieve SSH keys:
 
 ```bash
 ls ssh-private-keys/
+```
+
+
+
 Connect to EC2 instance:
 
 ```bash
 ssh -i ssh-private-keys/sg_private_key.pem ec2-user@<public-ip>
+```
 
 🧹 Cleanup
 To destroy all resources:
 
-
+```bash
 terraform destroy -auto-approve
-Important: Verify Internet Gateway deletion in AWS Console after destruction
+```
 
-🐛 Troubleshooting
-SSH Connection Issues
-Verify security group allows inbound TCP/22
+#### Important: Verify Internet Gateway deletion in AWS Console after destruction
 
-Check instance public IP address
+## 🐛 Troubleshooting
 
-Ensure using correct PEM key:
+# SSH Connection Issues
 
-``` bash
-chmod 400 ssh-private-keys/sg_private_key.pem
-General Tips
+- Verify security group allows inbound TCP/22
+
+
+Thanks for your visit
